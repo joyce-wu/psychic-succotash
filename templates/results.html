@@ -1,9 +1,12 @@
 <html>
   <body>
-    {{ title }}
+    <center>
+    <h1> {{ title }} Under {{m}}  </h1> 
     <br>
     {% for r in result %}
-    {{r["mass"]}}
+    {{r["name"]}} : {{r["mass"]}}
+    <br>
     {% endfor %}
+    /<center>
   </body>
 </html>

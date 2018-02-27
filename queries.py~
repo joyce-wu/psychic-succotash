@@ -1,0 +1,17 @@
+'''
+Joyce Wu & Queenie xiang
+SoftDev2 pd7
+K04 -- Mi only nyam ital food, mon!
+2018-02-14
+'''
+
+from pymongo import MongoClient
+
+c = MongoClient('lisa.stuy.edu')
+mfDB = c.test
+collec = mfDB.restaurants
+
+def borough(boro):
+    restaurants = collec.find_many({"borough": boro})
+    print(restaurants)
+    

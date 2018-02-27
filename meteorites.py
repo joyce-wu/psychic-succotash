@@ -1,6 +1,6 @@
 '''
 Joyce Wu & Queenie Xiang
-Softdev2 pd7
+Softdev2 pd7 
 K05 -- Import/Export Bank
 2018-02-26
 '''
@@ -15,7 +15,7 @@ Import: We opened the url to retrieve data and imported as json. write_json writ
 from pymongo import MongoClient
 import urllib2, json
 
-data = {}
+data = {} 
 c = MongoClient('lisa.stuy.edu')
 mfDB = c.chobani_flips
 collie = mfDB.meteorites
@@ -32,28 +32,30 @@ def write_json(data):
     f.close()
 
 #retrieve data and insert into database and imported into json file
-# data = import_info()
-# #write_json(data)
-# collie.drop()
-# collie.insert_many(data)
+data = import_info()
+#write_json(data)
+collie.drop()
+collie.insert_many(data)
 
 #parses through collection to convert all masses to floats from strings
-def convert():
+def convert(collie):
     #finds all landings with field mass
     landings = collie.find()
     for l in landings:
+        print l
 	try:
              l["mass"] = float(l["mass"])
              collie.save(l)
         except:
              print "no mass"
+    return collie
 #convert()
 
-#retrieves all meteorite landings with mass less than n
+#retrieves all meteorite landings with mass less than n  
 def mass(n, collie):
     landings = collie.find({"mass": {"$lt": n}})
-    for l in landings:
-        print l
+    #for l in landings:
+        #print l
     return landings
 
 #retrieves all meteorite landings with that recclass
@@ -63,16 +65,16 @@ def recclass(recclass):
         print l
 
 #retrieves all meteorite landings with names that start with 'letter'
-#and have a mass less than 'mass'
+#and have a mass less than 'mass' 
 def name_mass(letter, mass):
     landings = collie.find({"mass": {"$lt": mass}})
-    d = {};
+    d = {}; 
     for l in landings:
         if l["name"][0].lower() == letter:
             d[l["name"]] = l["mass"]
     for meteorite in d:
-        print meteorite + ": " + str(d[meteorite])
-
+        print meteorite + ": " + str(d[meteorite]) 
+    
 
 
 #retrieves meteorite landings with mass between mass1 and mass2
@@ -82,29 +84,29 @@ def between_masses(mass1, mass2):
         min_val = mass2
     else:
         max_val = mass2
-        min_val = mass1
-
+        min_val = mass1 
+        
     landings = collie.find({"mass": {"$lt": max_val}})
     for l in landings:
-        if l["mass"] > min_val:
+        if l["mass"] > min_val: 
             print l
 
 
-#retrieves meteorite landings with a given year
+#retrieves meteorite landings with a given year 
 def date_range(y):
 
-    landings = collie.find()
-
+    landings = collie.find() 
+    
     for l in landings:
-        try:
+        try: 
             if l["year"][0:4] == str(y):
                 print l
 
         except:
             print ""
 
-
-
+                               
+    
 #TESTING
 #recclass("L5")
 #mass(2000)

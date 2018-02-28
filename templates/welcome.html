@@ -1,8 +1,19 @@
 <html>
+  <h1> Search for meteorite landings! </h1> 
   <body>
+    To see all meteorites under a certain mass, type the maximum mass below: (Numbers only!) <br> 
     <form action="/mass">
-      Mass:<input type="text" name="mass"></input>
+      Mass:<input type="text" name="mass"></input> <br>
       <input type="submit" name="submit"></input><br>
+    </form>
+
+    <br><br>
+
+    To see all meteorites starting with a certain letter and under a certain mass, type the letter and maximum mass below: (String for letter and number for mass only!)<br>
+    <form action="/letter_mass">
+      Letter: <input type="text" name="letter"> </input> <br>
+      Mass: <input type="text" name="mass"> </input> <br>
+      <input type="submit" name="submit"> </input> <br>
     </form>
   </body>
 </html>

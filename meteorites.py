@@ -63,19 +63,23 @@ def recclass(recclass):
     landings = collie.find({"recclass": str(recclass)})
     for l in landings:
         print l
+    return landings
 
 #retrieves all meteorite landings with names that start with 'letter'
 #and have a mass less than 'mass' 
-def name_mass(letter, mass):
-    landings = collie.find({"mass": {"$lt": mass}})
-    d = {}; 
+def name_mass(letter, m, collie):
+    landings = collie.find({"mass": {"$lt": m}})
+
+    d = {}
     for l in landings:
         if l["name"][0].lower() == letter:
             d[l["name"]] = l["mass"]
-    for meteorite in d:
-        print meteorite + ": " + str(d[meteorite]) 
-    
 
+    #for meteorite in d:
+        #print d[meteorite]
+        #print meteorite + ": " + str(d[meteorite])
+    return d
+    
 
 #retrieves meteorite landings with mass between mass1 and mass2
 def between_masses(mass1, mass2):
